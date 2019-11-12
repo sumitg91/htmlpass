@@ -1,0 +1,71 @@
+<html>
+<head>
+
+</head>
+<style>
+	.pass-img{
+		height: 100%;
+		width: auto;
+	}
+	.date{
+		position: fixed;
+		left: 17%;
+		font-size: 95px;
+		color: red;
+		font-family: sans-serif;
+		font-weight: 600;
+	}
+	#MyClockDisplay {
+		position: fixed;
+		right: 17%;
+		font-size: 93px;
+		color: red;
+		font-weight: 600;
+		margin-top: 65px;
+		font-family: sans-serif;
+	}
+</style>
+<body>
+
+	<img class="pass-img" src='pass.jpg'>
+	<center><h1 class="date">
+			<script>
+				var today = new Date();
+				var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+				document.write(date);
+			</script>
+	</h1></center>
+	<center><div id="MyClockDisplay" class="clock" onload="showTime()"></div></center>
+	<script>
+	function showTime(){
+	var date = new Date();
+	var h = date.getHours(); // 0 - 23
+	var m = date.getMinutes(); // 0 - 59
+	var s = date.getSeconds(); // 0 - 59
+	var session = "AM";
+
+	if(h == 0){
+		h = 12;
+	}
+
+	if(h > 12){
+		h = h - 12;
+		session = "PM";
+	}
+
+	h = (h < 10) ? "0" + h : h;
+	m = (m < 10) ? "0" + m : m;
+	s = (s < 10) ? "0" + s : s;
+
+	var timer = h + ":" + m + ":" + s + " " + session;
+	document.getElementById("MyClockDisplay").innerText = timer+'abc';
+	document.getElementById("MyClockDisplay").textContent = timer;
+
+	setTimeout(showTime, 1000);
+
+	}
+
+	showTime();
+</script>
+</body>
+</html>
